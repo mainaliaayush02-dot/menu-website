@@ -1,5 +1,5 @@
 import React from 'react'
-import { Info, Sparkles, AlertCircle } from 'lucide-react'
+import { Info, Sparkles } from 'lucide-react'
 
 export default function MenuItemCard({ item, isFood }) {
   const isVeg = item['Dietary Information']?.toLowerCase().includes('vegetarian') ||
@@ -14,7 +14,7 @@ export default function MenuItemCard({ item, isFood }) {
                      item['Item ID'] === 'FOOD-064'
 
   return (
-    <div className="glass-card rounded-xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 border border-gray-800/80 hover:border-[#E5A93C]/40">
+    <div className="card-warm rounded-xl p-4 sm:p-5 flex flex-col justify-between">
       
       {/* Top Section: Name, Dietary/Category Indicators & Price */}
       <div>
@@ -22,45 +22,51 @@ export default function MenuItemCard({ item, isFood }) {
           
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap">
-              {/* Dietary Indicator Dot */}
+              {/* Dietary Indicator Icon (Classic square with green/red dot) */}
               {isFood && (
                 <span
-                  className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
-                    isVeg ? 'bg-emerald-500 ring-2 ring-emerald-500/30' : 'bg-rose-500 ring-2 ring-rose-500/30'
+                  className={`w-3.5 h-3.5 rounded-sm border flex items-center justify-center flex-shrink-0 ${
+                    isVeg ? 'border-emerald-700 bg-emerald-50' : 'border-[#B83240] bg-rose-50'
                   }`}
                   title={isVeg ? 'Vegetarian' : 'Non-Vegetarian'}
-                />
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      isVeg ? 'bg-emerald-700' : 'bg-[#B83240]'
+                    }`}
+                  />
+                </span>
               )}
 
               {/* Item Name */}
-              <h3 className="font-serif font-semibold text-base sm:text-lg text-[#F8FAFC] tracking-wide leading-snug">
+              <h3 className="font-serif font-bold text-base sm:text-lg text-[#211D1E] tracking-tight leading-snug">
                 {item['Exact Item Name']}
               </h3>
 
               {/* Portion / Size Badge */}
               {item['Portion / Size'] && item['Portion / Size'] !== 'Single Serving' && item['Portion / Size'] !== 'Cup' && item['Portion / Size'] !== 'Glass' && (
-                <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#1B2433] text-amber-300 border border-amber-500/20 font-medium">
+                <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#F2EFEB] text-[#741C2B] border border-[#A58E70]/30 font-semibold">
                   {item['Portion / Size']}
                 </span>
               )}
 
               {/* 18+ Alcoholic Badge */}
               {!isFood && isAlcoholic && (
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-semibold">
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-rose-50 text-[#B83240] border border-[#B83240]/40 font-bold">
                   18+
                 </span>
               )}
             </div>
 
             {/* Subcategory Label */}
-            <p className="text-[11px] text-gray-500 tracking-wider uppercase font-medium mt-0.5">
+            <p className="text-[11px] text-[#A58E70] tracking-wider uppercase font-semibold mt-1">
               {item['Subcategory']}
             </p>
           </div>
 
           {/* Price Tag */}
           <div className="text-right flex-shrink-0">
-            <span className="font-serif font-bold text-base sm:text-lg text-[#E5A93C] tracking-tight">
+            <span className="font-serif font-bold text-base sm:text-lg text-[#741C2B] tracking-tight">
               {item['Price Display']}
             </span>
           </div>
@@ -69,23 +75,23 @@ export default function MenuItemCard({ item, isFood }) {
 
         {/* Description / Ingredients */}
         {item['Description / Ingredients'] && (
-          <p className="text-xs sm:text-sm text-gray-400 mt-2 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#5A5255] mt-2 leading-relaxed">
             {item['Description / Ingredients']}
           </p>
         )}
 
         {/* Special Notes / Preparation Requirement */}
         {item['Special Notes'] && (
-          <div className="mt-2.5 flex items-start gap-1.5 text-xs text-amber-200/80 bg-amber-950/20 px-2.5 py-1.5 rounded-lg border border-amber-500/20">
-            <Sparkles className="w-3.5 h-3.5 text-[#E5A93C] flex-shrink-0 mt-0.5" />
-            <span className="leading-tight">{item['Special Notes']}</span>
+          <div className="mt-2.5 flex items-start gap-1.5 text-xs text-[#741C2B] bg-[#FFF8F8] px-2.5 py-1.5 rounded-lg border border-[#B83240]/20">
+            <Sparkles className="w-3.5 h-3.5 text-[#B83240] flex-shrink-0 mt-0.5" />
+            <span className="leading-tight font-medium">{item['Special Notes']}</span>
           </div>
         )}
 
         {/* Transparent Anomaly Notice if applicable */}
         {hasAnomaly && (
-          <div className="mt-2.5 flex items-start gap-1.5 text-[11px] text-sky-200 bg-sky-950/20 px-2.5 py-1.5 rounded-lg border border-sky-500/30">
-            <Info className="w-3.5 h-3.5 text-sky-400 flex-shrink-0 mt-0.5" />
+          <div className="mt-2.5 flex items-start gap-1.5 text-[11px] text-[#741C2B] bg-[#FAF7F2] px-2.5 py-1.5 rounded-lg border border-[#A58E70]/40">
+            <Info className="w-3.5 h-3.5 text-[#B83240] flex-shrink-0 mt-0.5" />
             <div className="leading-tight">
               {item['Item ID'] === 'FOOD-024' ? (
                 <span>
@@ -106,13 +112,13 @@ export default function MenuItemCard({ item, isFood }) {
       </div>
 
       {/* Footer details: Variants or Dietary */}
-      <div className="mt-3 pt-2.5 border-t border-gray-800/60 flex items-center justify-between text-[11px] text-gray-500">
-        <span className="truncate max-w-[200px]">
+      <div className="mt-3 pt-2.5 border-t border-[#A58E70]/20 flex items-center justify-between text-[11px] text-[#A58E70]">
+        <span className="truncate max-w-[200px] font-medium text-[#5A5255]">
           {item['Available Variants'] && item['Available Variants'] !== 'Standard' && item['Available Variants'] !== 'Single Serving'
             ? `Variants: ${item['Available Variants']}`
             : item['Dietary Information'] || 'Freshly Prepared'}
         </span>
-        <span className="font-mono text-gray-600 text-[10px]">
+        <span className="font-mono text-[#A58E70] text-[10px]">
           {item['Source Page']}
         </span>
       </div>

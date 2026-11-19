@@ -1,22 +1,36 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --bg-primary: #FFFDF9;
+    --bg-secondary: #F2EFEB;
+    --brand-red: #B83240;
+    --deep-burgundy: #741C2B;
+    --warm-taupe: #A58E70;
+    --text-charcoal: #211D1E;
+    --text-muted: #5A5255;
+  }
+
   body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0A0C10;
-    color: #E2E8F0;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    background-color: #FFFDF9;
+    color: #211D1E;
   }
   
-  h1, h2, h3, .font-serif {
-    font-family: 'Playfair Display', Georgia, serif;
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
   }
-  
-  .font-brand {
-    font-family: 'Cinzel', serif;
+
+  .font-editorial {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-devanagari {
+    font-family: 'Noto Sans Devanagari', 'Manrope', sans-serif;
   }
 }
 
-/* Custom scrollbar for horizontal categories */
+/* Custom scrollbars */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -25,31 +39,64 @@
   scrollbar-width: none;
 }
 
-/* Glow effects */
-.gold-glow {
-  box-shadow: 0 0 25px -5px rgba(229, 169, 60, 0.25);
+/* Brand Warm Styling */
+.bg-warm-white {
+  background-color: #FFFDF9;
 }
 
-.gold-glow-subtle {
-  box-shadow: 0 0 15px -3px rgba(229, 169, 60, 0.12);
+.bg-soft-beige {
+  background-color: #F2EFEB;
 }
 
-/* Glassmorphism */
-.glass-nav {
-  background: rgba(12, 15, 20, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(229, 169, 60, 0.12);
+.bg-fireflies-red {
+  background-color: #B83240;
 }
 
-.glass-card {
-  background: rgba(18, 22, 30, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.text-fireflies-red {
+  color: #B83240;
 }
 
-.glass-card:hover {
-  border-color: rgba(229, 169, 60, 0.25);
-  background: rgba(22, 27, 38, 0.85);
+.text-deep-burgundy {
+  color: #741C2B;
+}
+
+.border-warm-taupe {
+  border-color: #A58E70;
+}
+
+.card-warm {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(165, 142, 112, 0.22);
+  box-shadow: 0 2px 12px -2px rgba(116, 28, 43, 0.04);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-warm:hover {
+  border-color: rgba(184, 50, 64, 0.35);
+  box-shadow: 0 4px 18px -2px rgba(116, 28, 43, 0.08);
+}
+
+.glass-nav-warm {
+  background-color: rgba(255, 253, 249, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(165, 142, 112, 0.25);
+}
+
+.red-badge {
+  background-color: rgba(184, 50, 64, 0.08);
+  color: #B83240;
+  border: 1px solid rgba(184, 50, 64, 0.22);
+}
+
+.burgundy-badge {
+  background-color: rgba(116, 28, 43, 0.08);
+  color: #741C2B;
+  border: 1px solid rgba(116, 28, 43, 0.22);
+}
+
+.taupe-badge {
+  background-color: rgba(165, 142, 112, 0.12);
+  color: #6A5842;
+  border: 1px solid rgba(165, 142, 112, 0.25);
 }

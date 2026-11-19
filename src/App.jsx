@@ -9,7 +9,7 @@ import PizzaSection from './components/PizzaSection.jsx'
 import AuditModal from './components/AuditModal.jsx'
 import Footer from './components/Footer.jsx'
 import FloatingActions from './components/FloatingActions.jsx'
-import { Sparkles, Utensils, Wine, Clock, AlertTriangle, ShieldCheck } from 'lucide-react'
+import { Utensils, Clock } from 'lucide-react'
 
 // Canonical category order from source PDF documents
 const FOOD_CATEGORY_ORDER = [
@@ -139,12 +139,10 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0A0C10] text-[#E2E8F0]">
+    <div className="min-h-screen flex flex-col bg-[#FFFDF9] text-[#211D1E]">
       
-      {/* 1. Header */}
+      {/* 1. Header with Official Logo */}
       <Header
-        activeSection={activeSection}
-        setActiveSection={setActiveSection}
         onOpenAudit={() => setIsAuditModalOpen(true)}
       />
 
@@ -175,7 +173,7 @@ export default function App() {
         
         {/* Results Counter / Active Filter Bar */}
         {(searchQuery || selectedCategory !== 'All' || dietaryFilter !== 'All') && (
-          <div className="mb-6 flex items-center justify-between p-3 rounded-xl bg-[#141A24] border border-gray-800 text-xs text-gray-300">
+          <div className="mb-6 flex items-center justify-between p-3.5 rounded-xl bg-[#F2EFEB] border border-[#A58E70]/30 text-xs text-[#211D1E] shadow-xs">
             <span>
               Showing <strong>{filteredItems.length}</strong> items {searchQuery && `matching "${searchQuery}"`}
             </span>
@@ -185,7 +183,7 @@ export default function App() {
                 setSelectedCategory('All')
                 setDietaryFilter('All')
               }}
-              className="text-[#E5A93C] hover:underline font-medium cursor-pointer"
+              className="text-[#B83240] hover:underline font-bold cursor-pointer"
             >
               Reset Filters
             </button>
@@ -195,11 +193,11 @@ export default function App() {
         {/* Empty State */}
         {groupedCategories.length === 0 ? (
           <div className="py-20 text-center space-y-4">
-            <div className="w-16 h-16 mx-auto rounded-full bg-[#18202F] flex items-center justify-center text-gray-500">
+            <div className="w-16 h-16 mx-auto rounded-full bg-[#F2EFEB] border border-[#A58E70]/30 flex items-center justify-center text-[#B83240]">
               <Utensils className="w-8 h-8" />
             </div>
-            <h3 className="font-serif font-bold text-xl text-white">No menu items found</h3>
-            <p className="text-gray-400 text-sm max-w-sm mx-auto">
+            <h3 className="font-serif font-bold text-xl text-[#741C2B]">No menu items found</h3>
+            <p className="text-[#5A5255] text-sm max-w-sm mx-auto">
               We couldn't find any items matching your search or filters. Try adjusting your query or resetting filters.
             </p>
             <button
@@ -208,7 +206,7 @@ export default function App() {
                 setSelectedCategory('All')
                 setDietaryFilter('All')
               }}
-              className="px-5 py-2 rounded-xl bg-[#E5A93C] text-[#0A0C10] font-semibold text-xs hover:brightness-110 cursor-pointer"
+              className="px-6 py-2.5 rounded-xl bg-[#B83240] text-white font-semibold text-xs hover:bg-[#9E2835] cursor-pointer shadow-xs"
             >
               Show All Items
             </button>
@@ -223,19 +221,19 @@ export default function App() {
                 className="scroll-mt-40 space-y-4"
               >
                 {/* Category Header */}
-                <div className="flex items-end justify-between border-b border-gray-800/80 pb-3">
+                <div className="flex items-end justify-between border-b border-[#A58E70]/30 pb-3">
                   <div>
                     <div className="flex items-center gap-2.5">
-                      <h2 className="font-serif font-bold text-xl sm:text-2xl text-[#F8FAFC] tracking-wide">
+                      <h2 className="font-serif font-bold text-xl sm:text-2xl text-[#741C2B] tracking-tight">
                         {categoryName === 'Do It Yourself Patter' ? 'Do It Yourself Platter' : categoryName}
                       </h2>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-[#18202F] text-amber-300 border border-gray-800 font-medium">
+                      <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F2EFEB] text-[#741C2B] border border-[#A58E70]/30 font-bold">
                         {items.length} {items.length === 1 ? 'item' : 'items'}
                       </span>
                     </div>
 
                     {/* Subtitle / Source info */}
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-[#A58E70] font-medium mt-0.5">
                       {categoryName === 'Thakali Khana Set' && 'Traditional Nepali Thali Platter'}
                       {categoryName === 'Fireflies Pizza Corner' && 'Artisan Thin-Crust & Party Size Pizzas'}
                       {categoryName === 'Hard Drinks' && 'Domestic & International Spirit Bottle Service'}
@@ -247,10 +245,10 @@ export default function App() {
 
                 {/* Special Mandatory Notice for Thakali Khana Set */}
                 {categoryName === 'Thakali Khana Set' && (
-                  <div className="flex items-start gap-2.5 p-3.5 rounded-xl bg-amber-950/25 border border-amber-500/30 text-amber-200 text-xs sm:text-sm">
-                    <Clock className="w-4 h-4 text-[#E5A93C] flex-shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[#FFF8F8] border border-[#B83240]/30 text-[#741C2B] text-xs sm:text-sm shadow-xs">
+                    <Clock className="w-4 h-4 text-[#B83240] flex-shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-[#E5A93C]">Mandatory Kitchen Notice:</strong> Minimum 4 Packs Order & Wait time 30-50 mins for fresh Thakali preparation.
+                      <strong className="text-[#B83240]">Mandatory Kitchen Notice:</strong> Minimum 4 Packs Order & Wait time 30-50 mins for fresh Thakali preparation.
                     </div>
                   </div>
                 )}
