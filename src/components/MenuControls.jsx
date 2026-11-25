@@ -19,14 +19,14 @@ export default function MenuControls({
     setSelectedCategory(category)
     const element = document.getElementById(`cat-${encodeURIComponent(category)}`)
     if (element) {
-      const yOffset = -150
+      const yOffset = -90
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
   }
 
   return (
-    <div className="sticky top-20 sm:top-22 z-40 bg-[#FFFDF9]/95 backdrop-blur-md border-b border-[#A58E70]/30 shadow-xs">
+    <div className="sticky top-0 z-40 bg-[#FFFDF9]/95 backdrop-blur-md border-b border-[#A58E70]/30 shadow-xs">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-3 pb-2.5 space-y-3">
         
         {/* Row 1: Primary Section Toggle & Instant Search Bar */}

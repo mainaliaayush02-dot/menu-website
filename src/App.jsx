@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { menuData } from './data/menuData.js'
 import Header from './components/Header.jsx'
-import Hero from './components/Hero.jsx'
 import MenuControls from './components/MenuControls.jsx'
 import MenuItemCard from './components/MenuItemCard.jsx'
 import HardDrinksMatrix from './components/HardDrinksMatrix.jsx'
@@ -117,42 +116,15 @@ export default function App() {
     return groups
   }, [filteredItems, currentCategoryOrder])
 
-  // Handlers for hero exploration buttons
-  const handleExploreFood = () => {
-    setActiveSection('food')
-    setSelectedCategory('All')
-    setSearchQuery('')
-    const element = document.getElementById('menu-root')
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  const handleExploreDrinks = () => {
-    setActiveSection('beverage')
-    setSelectedCategory('All')
-    setSearchQuery('')
-    const element = document.getElementById('menu-root')
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFDF9] text-[#211D1E]">
       
-      {/* 1. Header with Official Logo */}
+      {/* 1. Header with Official Logo Prominently Centered */}
       <Header
         onOpenAudit={() => setIsAuditModalOpen(true)}
       />
 
-      {/* 2. Hero Section */}
-      <Hero
-        onExploreFood={handleExploreFood}
-        onExploreDrinks={handleExploreDrinks}
-      />
-
-      {/* 3. Sticky Menu Controls (Search, Filters, Categories) */}
+      {/* 2. Sticky Menu Controls (Section Switcher, Search, Filters, Categories) */}
       <div id="menu-root">
         <MenuControls
           activeSection={activeSection}
@@ -168,7 +140,7 @@ export default function App() {
         />
       </div>
 
-      {/* 4. Menu Content Display */}
+      {/* 3. Menu Content Display */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
         
         {/* Results Counter / Active Filter Bar */}
@@ -280,13 +252,13 @@ export default function App() {
 
       </main>
 
-      {/* 5. Footer */}
+      {/* 4. Footer with Brand & Verification Link */}
       <Footer onOpenAudit={() => setIsAuditModalOpen(true)} />
 
-      {/* 6. Floating Action Buttons (Scroll to Top & Mobile Call) */}
+      {/* 5. Floating Actions (WhatsApp & Scroll-to-Top) */}
       <FloatingActions />
 
-      {/* 7. Menu Quality Assurance & Transparency Modal */}
+      {/* 6. Menu Quality Assurance & Transparency Modal */}
       <AuditModal
         isOpen={isAuditModalOpen}
         onClose={() => setIsAuditModalOpen(false)}
