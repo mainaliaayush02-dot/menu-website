@@ -2,19 +2,22 @@
 
 @layer base {
   :root {
-    --bg-primary: #FFFDF9;
-    --bg-secondary: #F2EFEB;
+    --bg-main: #241C20;
+    --bg-secondary: #302328;
+    --bg-section: #38282D;
+    --bg-elevated: #443137;
     --brand-red: #B83240;
     --deep-burgundy: #741C2B;
     --warm-taupe: #A58E70;
-    --text-charcoal: #211D1E;
-    --text-muted: #5A5255;
+    --text-main: #FFFDF9;
+    --text-secondary: #D6C7C2;
+    --text-muted: #B5A4A0;
   }
 
   body {
     font-family: 'Manrope', system-ui, -apple-system, sans-serif;
-    background-color: #FFFDF9;
-    color: #211D1E;
+    background-color: #241C20;
+    color: #FFFDF9;
   }
   
   h1, h2, h3, h4, .font-serif {
@@ -39,64 +42,47 @@
   scrollbar-width: none;
 }
 
-/* Brand Warm Styling */
-.bg-warm-white {
-  background-color: #FFFDF9;
-}
-
-.bg-soft-beige {
-  background-color: #F2EFEB;
-}
-
-.bg-fireflies-red {
-  background-color: #B83240;
-}
-
-.text-fireflies-red {
-  color: #B83240;
-}
-
-.text-deep-burgundy {
-  color: #741C2B;
-}
-
-.border-warm-taupe {
-  border-color: #A58E70;
-}
-
+/* Warm Dark Surface & Card Styling */
 .card-warm {
-  background-color: #FFFFFF;
+  background-color: #38282D;
   border: 1px solid rgba(165, 142, 112, 0.22);
-  box-shadow: 0 2px 12px -2px rgba(116, 28, 43, 0.04);
+  box-shadow: 0 4px 18px -2px rgba(15, 10, 13, 0.45);
   transition: all 0.2s ease-in-out;
 }
 
 .card-warm:hover {
-  border-color: rgba(184, 50, 64, 0.35);
-  box-shadow: 0 4px 18px -2px rgba(116, 28, 43, 0.08);
+  border-color: rgba(184, 50, 64, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px -2px rgba(184, 50, 64, 0.2);
+}
+
+.card-elevated {
+  background-color: #443137;
+  border: 1px solid rgba(165, 142, 112, 0.25);
+  box-shadow: 0 4px 16px -2px rgba(15, 10, 13, 0.4);
 }
 
 .glass-nav-warm {
-  background-color: rgba(255, 253, 249, 0.94);
+  background-color: rgba(36, 28, 32, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(165, 142, 112, 0.25);
 }
 
 .red-badge {
-  background-color: rgba(184, 50, 64, 0.08);
-  color: #B83240;
-  border: 1px solid rgba(184, 50, 64, 0.22);
+  background-color: rgba(184, 50, 64, 0.2);
+  color: #FFA4AD;
+  border: 1px solid rgba(184, 50, 64, 0.35);
 }
 
 .burgundy-badge {
-  background-color: rgba(116, 28, 43, 0.08);
-  color: #741C2B;
-  border: 1px solid rgba(116, 28, 43, 0.22);
+  background-color: rgba(116, 28, 43, 0.3);
+  color: #F8D8DC;
+  border: 1px solid rgba(116, 28, 43, 0.4);
 }
 
 .taupe-badge {
-  background-color: rgba(165, 142, 112, 0.12);
-  color: #6A5842;
-  border: 1px solid rgba(165, 142, 112, 0.25);
+  background-color: rgba(165, 142, 112, 0.18);
+  color: #E2D5C3;
+  border: 1px solid rgba(165, 142, 112, 0.3);
 }

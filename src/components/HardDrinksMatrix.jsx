@@ -45,10 +45,10 @@ export default function HardDrinksMatrix({ hardDrinkItems }) {
   return (
     <div className="space-y-4">
       {/* 18+ Legal Warning Banner */}
-      <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-rose-50 border border-[#B83240]/30 text-[#741C2B] text-xs font-medium">
+      <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-[#302328] border border-[#B83240]/40 text-[#FFA4AD] text-xs font-medium">
         <ShieldAlert className="w-4 h-4 flex-shrink-0 text-[#B83240]" />
         <span>
-          <strong>18+ Age Notice:</strong> Alcohol consumption is strictly restricted to patrons aged 18 and above. Please drink responsibly.
+          <strong className="text-white">18+ Age Notice:</strong> Alcohol consumption is strictly restricted to patrons aged 18 and above. Please drink responsibly.
         </span>
       </div>
 
@@ -63,45 +63,45 @@ export default function HardDrinksMatrix({ hardDrinkItems }) {
               <div>
                 <div className="flex items-center gap-2">
                   <Wine className="w-4 h-4 text-[#B83240]" />
-                  <h3 className="font-serif font-bold text-lg text-[#741C2B]">
+                  <h3 className="font-serif font-bold text-lg text-[#FFFDF9]">
                     {spirit.name}
                   </h3>
                 </div>
-                <p className="text-xs text-[#5A5255] mt-0.5">{spirit.category}</p>
+                <p className="text-xs text-[#A58E70] mt-0.5">{spirit.category}</p>
               </div>
-              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#B83240]/10 text-[#B83240] border border-[#B83240]/25 font-bold">
+              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#B83240]/25 text-[#FFA4AD] border border-[#B83240]/35 font-bold">
                 {spirit.savings}
               </span>
             </div>
 
             {/* Price Matrix Grid */}
-            <div className="grid grid-cols-3 gap-2 bg-[#FAF7F2] p-2.5 rounded-lg border border-[#A58E70]/25 text-center">
-              <div className="p-2 rounded bg-white border border-[#A58E70]/20">
+            <div className="grid grid-cols-3 gap-2 bg-[#302328] p-2.5 rounded-lg border border-[#A58E70]/25 text-center">
+              <div className="p-2 rounded bg-[#443137] border border-[#A58E70]/20">
                 <span className="block text-[11px] text-[#A58E70] font-bold uppercase tracking-wider">
                   Quarter
                 </span>
-                <span className="block text-[10px] text-[#5A5255] mb-1">~180 ml</span>
-                <span className="font-serif font-bold text-sm sm:text-base text-[#741C2B]">
+                <span className="block text-[10px] text-[#B5A4A0] mb-1">~180 ml</span>
+                <span className="font-serif font-bold text-sm sm:text-base text-[#FFA4AD]">
                   {spirit.quarter}
                 </span>
               </div>
 
-              <div className="p-2 rounded bg-white border border-[#A58E70]/20">
+              <div className="p-2 rounded bg-[#443137] border border-[#A58E70]/20">
                 <span className="block text-[11px] text-[#A58E70] font-bold uppercase tracking-wider">
                   Half
                 </span>
-                <span className="block text-[10px] text-[#5A5255] mb-1">~375 ml</span>
-                <span className="font-serif font-bold text-sm sm:text-base text-[#741C2B]">
+                <span className="block text-[10px] text-[#B5A4A0] mb-1">~375 ml</span>
+                <span className="font-serif font-bold text-sm sm:text-base text-[#FFA4AD]">
                   {spirit.half}
                 </span>
               </div>
 
-              <div className="p-2 rounded bg-[#FFFDF9] border border-[#B83240]/30 shadow-xs">
-                <span className="block text-[11px] text-[#B83240] font-bold uppercase tracking-wider">
+              <div className="p-2 rounded bg-[#443137] border border-[#B83240]/40 shadow-xs">
+                <span className="block text-[11px] text-[#FFA4AD] font-bold uppercase tracking-wider">
                   Full Bottle
                 </span>
-                <span className="block text-[10px] text-[#5A5255] mb-1">~750 ml</span>
-                <span className="font-serif font-bold text-sm sm:text-base text-[#741C2B]">
+                <span className="block text-[10px] text-[#B5A4A0] mb-1">~750 ml</span>
+                <span className="font-serif font-bold text-sm sm:text-base text-[#FFFDF9]">
                   {spirit.full}
                 </span>
               </div>

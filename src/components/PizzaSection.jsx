@@ -38,17 +38,17 @@ export default function PizzaSection({ pizzaItems }) {
     <div className="space-y-4">
       
       {/* DIY Pizza Customizer Box */}
-      <div className="rounded-xl p-4 sm:p-5 bg-[#F2EFEB] border border-[#A58E70]/40 shadow-xs">
+      <div className="rounded-xl p-4 sm:p-5 bg-[#302328] border border-[#A58E70]/30 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-lg bg-[#B83240]/10 border border-[#B83240]/25 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg bg-[#B83240]/20 border border-[#B83240]/30 flex items-center justify-center">
               <Pizza className="w-5 h-5 text-[#B83240]" />
             </div>
             <div>
-              <h4 className="font-serif font-bold text-base sm:text-lg text-[#741C2B]">
+              <h4 className="font-serif font-bold text-base sm:text-lg text-[#FFFDF9]">
                 Do It Yourself Pizza (Custom Creation)
               </h4>
-              <p className="text-xs text-[#B83240] font-semibold">
+              <p className="text-xs text-[#FFA4AD] font-semibold">
                 Choose any 3 mains for free!
               </p>
             </div>
@@ -60,17 +60,17 @@ export default function PizzaSection({ pizzaItems }) {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2.5 border-t border-[#A58E70]/30 text-xs">
-          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-[#A58E70]/25">
-            <PlusCircle className="w-4 h-4 text-emerald-700 flex-shrink-0" />
-            <span className="text-[#211D1E]">
-              <strong>Add-on Each Item:</strong> <span className="text-[#741C2B] font-bold">Rs.75</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2.5 border-t border-[#A58E70]/25 text-xs">
+          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#443137] border border-[#A58E70]/25">
+            <PlusCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+            <span className="text-[#D6C7C2]">
+              <strong>Add-on Each Item:</strong> <span className="text-[#FFA4AD] font-bold">Rs.75</span>
             </span>
           </div>
-          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-[#A58E70]/25">
+          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#443137] border border-[#A58E70]/25">
             <PlusCircle className="w-4 h-4 text-[#B83240] flex-shrink-0" />
-            <span className="text-[#211D1E]">
-              <strong>Add-on Extra Cheese:</strong> <span className="text-[#741C2B] font-bold">Rs.50</span>
+            <span className="text-[#D6C7C2]">
+              <strong>Add-on Extra Cheese:</strong> <span className="text-[#FFA4AD] font-bold">Rs.50</span>
             </span>
           </div>
         </div>
@@ -88,42 +88,42 @@ export default function PizzaSection({ pizzaItems }) {
                 <div className="flex items-center gap-2">
                   <span
                     className={`w-3.5 h-3.5 rounded-sm border flex items-center justify-center flex-shrink-0 ${
-                      pizza.dietary === 'Vegetarian' ? 'border-emerald-700 bg-emerald-50' : 'border-[#B83240] bg-rose-50'
+                      pizza.dietary === 'Vegetarian' ? 'border-emerald-500 bg-emerald-950/40' : 'border-[#B83240] bg-[#302328]'
                     }`}
                   >
                     <span
                       className={`w-1.5 h-1.5 rounded-full ${
-                        pizza.dietary === 'Vegetarian' ? 'bg-emerald-700' : 'bg-[#B83240]'
+                        pizza.dietary === 'Vegetarian' ? 'bg-emerald-400' : 'bg-[#B83240]'
                       }`}
                     />
                   </span>
-                  <h4 className="font-serif font-bold text-base sm:text-lg text-[#211D1E]">
+                  <h4 className="font-serif font-bold text-base sm:text-lg text-[#FFFDF9]">
                     {pizza.name}
                   </h4>
                 </div>
               </div>
 
-              <p className="text-xs text-[#5A5255] leading-relaxed mb-4">
+              <p className="text-xs text-[#D6C7C2] leading-relaxed mb-4">
                 {pizza.desc}
               </p>
             </div>
 
             {/* Sizes & Pricing Columns */}
-            <div className="grid grid-cols-2 gap-2.5 bg-[#FAF7F2] p-2.5 rounded-lg border border-[#A58E70]/25 text-center">
-              <div className="p-2 rounded bg-white border border-[#A58E70]/20">
+            <div className="grid grid-cols-2 gap-2.5 bg-[#302328] p-2.5 rounded-lg border border-[#A58E70]/25 text-center">
+              <div className="p-2 rounded bg-[#443137] border border-[#A58E70]/20">
                 <span className="block text-[11px] text-[#A58E70] font-bold uppercase tracking-wider">
                   12" Medium
                 </span>
-                <span className="font-serif font-bold text-base text-[#741C2B] mt-0.5">
+                <span className="font-serif font-bold text-base text-[#FFA4AD] mt-0.5">
                   {pizza.p12}
                 </span>
               </div>
 
-              <div className="p-2 rounded bg-[#FFFDF9] border border-[#B83240]/25">
-                <span className="block text-[11px] text-[#B83240] font-bold uppercase tracking-wider">
+              <div className="p-2 rounded bg-[#443137] border border-[#B83240]/40">
+                <span className="block text-[11px] text-[#FFA4AD] font-bold uppercase tracking-wider">
                   18" Party Size
                 </span>
-                <span className="font-serif font-bold text-base text-[#741C2B] mt-0.5">
+                <span className="font-serif font-bold text-base text-[#FFFDF9] mt-0.5">
                   {pizza.p18}
                 </span>
               </div>

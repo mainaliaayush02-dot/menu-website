@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import { menuData } from './data/menuData.js'
 import Header from './components/Header.jsx'
+import MobileSidebar from './components/MobileSidebar.jsx'
 import MenuControls from './components/MenuControls.jsx'
 import MenuItemCard from './components/MenuItemCard.jsx'
 import HardDrinksMatrix from './components/HardDrinksMatrix.jsx'
@@ -40,6 +41,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [dietaryFilter, setDietaryFilter] = useState('All')
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false)
 
   // Current raw item list based on active section
@@ -49,17 +51,20 @@ export default function App() {
   // Calculate live category counts
   const categoryCounts = useMemo(() => {
     const counts = {}
-    currentCategoryOrder.forEach(cat => { counts[cat] = 0 })
-    currentRawItems.forEach(item => {
+    FOOD_CATEGORY_ORDER.forEach(cat => { counts[cat] = 0 })
+    BEV_CATEGORY_ORDER.forEach(cat => { counts[cat] = 0 })
+    menuData.foodItems.forEach(item => {
       const cat = item['Main Category']
-      if (counts[cat] !== undefined) {
-        counts[cat]++
-      } else {
-        counts[cat] = 1
-      }
+      if (counts[cat] !== undefined) counts[cat]++
+      else counts[cat] = 1
+    })
+    menuData.beverageItems.forEach(item => {
+      const cat = item['Main Category']
+      if (counts[cat] !== undefined) counts[cat]++
+      else counts[cat] = 1
     })
     return counts
-  }, [currentRawItems, currentCategoryOrder])
+  }, [])
 
   // Filter items based on search and dietary filters
   const filteredItems = useMemo(() => {
@@ -116,15 +121,54 @@ export default function App() {
     return groups
   }, [filteredItems, currentCategoryOrder])
 
+  // Category selection handler (used by both MenuControls and MobileSidebar)
+  const handleSelectCategory = (section, category) => {
+    if (section && section !== activeSection) {
+      setActiveSection(section)
+    }
+    setSelectedCategory(category)
+    setSearchQuery('')
+
+    if (category === 'All') {
+      const menuRoot = document.getElementById('menu-root')
+      if (menuRoot) {
+        menuRoot.scrollIntoView({ behavior: 'smooth' })
+      }
+      return
+    }
+
+    setTimeout(() => {
+      const element = document.getElementById(`cat-${encodeURIComponent(category)}`)
+      if (element) {
+        const yOffset = -90
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    }, 60)
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFFDF9] text-[#211D1E]">
+    <div className="min-h-screen flex flex-col bg-[#241C20] text-[#FFFDF9]">
       
-      {/* 1. Header with Official Logo Prominently Centered */}
-      <Header
-        onOpenAudit={() => setIsAuditModalOpen(true)}
+      {/* 1. Mobile Slide-out Navigation Drawer */}
+      <MobileSidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        selectedCategory={selectedCategory}
+        onSelectCategory={handleSelectCategory}
+        foodCategories={FOOD_CATEGORY_ORDER}
+        beverageCategories={BEV_CATEGORY_ORDER}
+        categoryCounts={categoryCounts}
       />
 
-      {/* 2. Sticky Menu Controls (Section Switcher, Search, Filters, Categories) */}
+      {/* 2. Header with Hamburger, Centered Logo & Hotline (No Audit Badge) */}
+      <Header
+        onOpenSidebar={() => setIsSidebarOpen(true)}
+      />
+
+      {/* 3. Sticky Menu Controls (Section Switcher, Search, Filters, Categories) */}
       <div id="menu-root">
         <MenuControls
           activeSection={activeSection}
@@ -140,14 +184,14 @@ export default function App() {
         />
       </div>
 
-      {/* 3. Menu Content Display */}
+      {/* 4. Menu Content Display */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
         
         {/* Results Counter / Active Filter Bar */}
         {(searchQuery || selectedCategory !== 'All' || dietaryFilter !== 'All') && (
-          <div className="mb-6 flex items-center justify-between p-3.5 rounded-xl bg-[#F2EFEB] border border-[#A58E70]/30 text-xs text-[#211D1E] shadow-xs">
+          <div className="mb-6 flex items-center justify-between p-3.5 rounded-xl bg-[#302328] border border-[#A58E70]/30 text-xs text-[#D6C7C2] shadow-xs">
             <span>
-              Showing <strong>{filteredItems.length}</strong> items {searchQuery && `matching "${searchQuery}"`}
+              Showing <strong className="text-[#FFFDF9]">{filteredItems.length}</strong> items {searchQuery && `matching "${searchQuery}"`}
             </span>
             <button
               onClick={() => {
@@ -155,7 +199,7 @@ export default function App() {
                 setSelectedCategory('All')
                 setDietaryFilter('All')
               }}
-              className="text-[#B83240] hover:underline font-bold cursor-pointer"
+              className="text-[#FFA4AD] hover:underline font-bold cursor-pointer"
             >
               Reset Filters
             </button>
@@ -165,11 +209,11 @@ export default function App() {
         {/* Empty State */}
         {groupedCategories.length === 0 ? (
           <div className="py-20 text-center space-y-4">
-            <div className="w-16 h-16 mx-auto rounded-full bg-[#F2EFEB] border border-[#A58E70]/30 flex items-center justify-center text-[#B83240]">
+            <div className="w-16 h-16 mx-auto rounded-full bg-[#302328] border border-[#A58E70]/30 flex items-center justify-center text-[#B83240]">
               <Utensils className="w-8 h-8" />
             </div>
-            <h3 className="font-serif font-bold text-xl text-[#741C2B]">No menu items found</h3>
-            <p className="text-[#5A5255] text-sm max-w-sm mx-auto">
+            <h3 className="font-serif font-bold text-xl text-[#FFFDF9]">No menu items found</h3>
+            <p className="text-[#B5A4A0] text-sm max-w-sm mx-auto">
               We couldn't find any items matching your search or filters. Try adjusting your query or resetting filters.
             </p>
             <button
@@ -190,16 +234,16 @@ export default function App() {
               <section
                 key={categoryName}
                 id={`cat-${encodeURIComponent(categoryName)}`}
-                className="scroll-mt-40 space-y-4"
+                className="scroll-mt-36 space-y-4"
               >
                 {/* Category Header */}
-                <div className="flex items-end justify-between border-b border-[#A58E70]/30 pb-3">
+                <div className="flex items-end justify-between border-b border-[#A58E70]/25 pb-3">
                   <div>
                     <div className="flex items-center gap-2.5">
-                      <h2 className="font-serif font-bold text-xl sm:text-2xl text-[#741C2B] tracking-tight">
-                        {categoryName === 'Do It Yourself Patter' ? 'Do It Yourself Platter' : categoryName}
+                      <h2 className="font-serif font-bold text-xl sm:text-2xl text-[#FFFDF9] tracking-tight">
+                        {categoryName === 'Do It Yourself Patter' ? 'Do It Yourself Platter' : categoryName === 'Fireflies Pizza Corner' ? 'Fireflies Pizza Corner' : categoryName}
                       </h2>
-                      <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F2EFEB] text-[#741C2B] border border-[#A58E70]/30 font-bold">
+                      <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#302328] text-[#FFA4AD] border border-[#A58E70]/30 font-bold">
                         {items.length} {items.length === 1 ? 'item' : 'items'}
                       </span>
                     </div>
@@ -217,10 +261,10 @@ export default function App() {
 
                 {/* Special Mandatory Notice for Thakali Khana Set */}
                 {categoryName === 'Thakali Khana Set' && (
-                  <div className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[#FFF8F8] border border-[#B83240]/30 text-[#741C2B] text-xs sm:text-sm shadow-xs">
+                  <div className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[#302328] border border-[#B83240]/40 text-[#FFA4AD] text-xs sm:text-sm shadow-xs">
                     <Clock className="w-4 h-4 text-[#B83240] flex-shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-[#B83240]">Mandatory Kitchen Notice:</strong> Minimum 4 Packs Order & Wait time 30-50 mins for fresh Thakali preparation.
+                      <strong className="text-white">Mandatory Kitchen Notice:</strong> Minimum 4 Packs Order & Wait time 30-50 mins for fresh Thakali preparation.
                     </div>
                   </div>
                 )}
@@ -252,13 +296,13 @@ export default function App() {
 
       </main>
 
-      {/* 4. Footer with Brand & Verification Link */}
+      {/* 5. Footer with Brand & Verification Link */}
       <Footer onOpenAudit={() => setIsAuditModalOpen(true)} />
 
-      {/* 5. Floating Actions (WhatsApp & Scroll-to-Top) */}
+      {/* 6. Floating Actions (WhatsApp & Scroll-to-Top) */}
       <FloatingActions />
 
-      {/* 6. Menu Quality Assurance & Transparency Modal */}
+      {/* 7. Menu Quality Assurance & Transparency Modal */}
       <AuditModal
         isOpen={isAuditModalOpen}
         onClose={() => setIsAuditModalOpen(false)}

@@ -1,28 +1,28 @@
 import React from 'react'
-import { Phone, ShieldCheck } from 'lucide-react'
+import { Menu, Phone } from 'lucide-react'
 
-export default function Header({ onOpenAudit }) {
+export default function Header({ onOpenSidebar }) {
   return (
-    <header className="bg-[#FFFDF9] border-b border-[#A58E70]/30 shadow-xs">
+    <header className="bg-[#241C20] border-b border-[#A58E70]/25 shadow-md">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center justify-between">
           
-          {/* Left: Direct Phone / Delivery Hotline */}
+          {/* Left Column: Mobile Hamburger Button & Desktop Menu Shortcut */}
           <div className="flex-1 flex justify-start items-center">
-            <a
-              href="tel:9841960700"
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#F2EFEB] hover:bg-[#EAE4DC] border border-[#A58E70]/30 text-xs sm:text-sm font-semibold text-[#B83240] transition-colors shadow-xs"
-              title="Call for Reservations & Delivery"
+            <button
+              onClick={onOpenSidebar}
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-[#302328] hover:bg-[#38282D] border border-[#A58E70]/30 text-xs sm:text-sm font-semibold text-[#FFFDF9] transition-all cursor-pointer shadow-xs active:scale-95"
+              aria-label="Open menu categories navigation"
+              title="Open Categories & Navigation"
             >
-              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#B83240]" />
-              <span className="hidden sm:inline">Call:</span>
-              <span>9841960700</span>
-            </a>
+              <Menu className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#B83240]" />
+              <span className="tracking-wide">Menu</span>
+            </button>
           </div>
 
-          {/* Center: Official Fireflies Logo Prominently Centered */}
+          {/* Center Column: Official Fireflies Logo Prominently Centered */}
           <div className="flex-shrink-0 flex items-center justify-center px-2 sm:px-6">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full border border-[#A58E70]/30 overflow-hidden shadow-sm bg-white p-1 sm:p-1.5 transition-transform hover:scale-102">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full border border-[#A58E70]/35 overflow-hidden shadow-lg bg-white p-1 sm:p-1.5 transition-transform hover:scale-102">
               <img
                 src="/logo.jpg"
                 alt="Fireflies Restaurant & Bar Official Logo"
@@ -32,17 +32,17 @@ export default function Header({ onOpenAudit }) {
             </div>
           </div>
 
-          {/* Right: 125 Items Verified Audit Badge */}
+          {/* Right Column: Call Hotline for Table Reservations & Delivery */}
           <div className="flex-1 flex justify-end items-center">
-            <button
-              onClick={onOpenAudit}
-              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#F2EFEB] hover:bg-[#EAE4DC] border border-[#A58E70]/40 text-[11px] sm:text-xs font-semibold text-[#741C2B] transition-colors cursor-pointer shadow-xs"
-              title="View Official Menu Verification & Quality Audit"
+            <a
+              href="tel:9841960700"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl bg-[#302328] hover:bg-[#38282D] border border-[#A58E70]/30 text-xs sm:text-sm font-semibold text-[#FFA4AD] transition-all shadow-xs active:scale-95"
+              title="Call for Reservations & Delivery"
             >
-              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#B83240]" />
-              <span className="hidden sm:inline">125 Items</span>
-              <span>Verified</span>
-            </button>
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#B83240]" />
+              <span className="hidden sm:inline text-[#D6C7C2]">Call:</span>
+              <span className="font-bold">9841960700</span>
+            </a>
           </div>
 
         </div>

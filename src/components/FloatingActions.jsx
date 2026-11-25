@@ -33,7 +33,7 @@ export default function FloatingActions() {
       {showScroll && (
         <button
           onClick={scrollToTop}
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FFFDF9] border border-[#A58E70]/40 text-[#741C2B] hover:bg-[#F2EFEB] hover:border-[#B83240]/50 flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#302328] border border-[#A58E70]/40 text-[#FFA4AD] hover:bg-[#38282D] hover:border-[#B83240]/60 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer active:scale-95"
           title="Scroll to Top"
           aria-label="Scroll to top of menu"
         >
