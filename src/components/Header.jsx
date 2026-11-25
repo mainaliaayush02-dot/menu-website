@@ -22,11 +22,11 @@ export default function Header({ onOpenAudit }) {
 
           {/* Center: Official Fireflies Logo Prominently Centered */}
           <div className="flex-shrink-0 flex items-center justify-center px-2 sm:px-6">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full border-2 border-[#A58E70]/40 overflow-hidden shadow-sm bg-white transition-transform hover:scale-102">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full border border-[#A58E70]/30 overflow-hidden shadow-sm bg-white p-1 sm:p-1.5 transition-transform hover:scale-102">
               <img
                 src="/logo.jpg"
                 alt="Fireflies Restaurant & Bar Official Logo"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain rounded-full"
                 loading="eager"
               />
             </div>

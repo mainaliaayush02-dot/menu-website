@@ -14,11 +14,11 @@ export default function Footer({ onOpenAudit }) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-8 border-b border-[#A58E70]/25">
           
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full border border-[#A58E70]/40 overflow-hidden shadow-sm flex-shrink-0 bg-white">
+            <div className="w-14 h-14 rounded-full border border-[#A58E70]/30 overflow-hidden shadow-sm flex-shrink-0 bg-white p-0.5">
               <img
                 src="/logo.jpg"
                 alt="Fireflies Logo"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain rounded-full"
               />
             </div>
             <div className="space-y-0.5">
